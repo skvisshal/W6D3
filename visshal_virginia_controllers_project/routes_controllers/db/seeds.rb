@@ -9,6 +9,7 @@
 User.destroy_all
 Artwork.destroy_all
 ArtworkShare.destroy_all
+Comment.destroy_all
 
 users = User.create([
     {username: 'vish'},
@@ -30,4 +31,10 @@ artwork_shares = ArtworkShare.create([
     {artwork_id: 2, viewer_id: 1},
     {artwork_id: 2, viewer_id: 2},
     {artwork_id: 3, viewer_id: 5}
+])
+
+comments = Comment.create([
+    {body: 'abc', user_id: 1, artwork_id: 3},
+    {body: 'so amazing!', user_id: 2, artwork_id: 1},
+    {body: 'i dont like it', user_id: 5, artwork_id: 3}
 ])
