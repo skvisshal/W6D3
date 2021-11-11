@@ -23,4 +23,9 @@ class User < ApplicationRecord
     foreign_key: :user_id,
     dependent: :destroy
 
+    has_many :likes, 
+    class_name: :Like,
+    primary_key: :id,
+    foreign_key: :user_id
+
 end

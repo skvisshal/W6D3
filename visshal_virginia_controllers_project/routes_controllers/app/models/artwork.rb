@@ -2,6 +2,7 @@ class Artwork < ApplicationRecord
     validates :title, :image_url, :artist_id, presence: true
     validates :image_url, uniqueness: true
     validates :artist_id, uniqueness: {scope: :title}
+    validates :favorite, inclusion: {in: [true, false]}
 
     belongs_to :artist,
     class_name: 'User',
@@ -22,6 +23,9 @@ class Artwork < ApplicationRecord
     primary_key: :id,
     foreign_key: :artwork_id,
     dependent: :destroy
+
+    has_many :likes,
+    as: :likeable
 
     def self.artworks_from_user(user_id)
         Artwork.distinct.left_outer_joins(:artwork_shares)
