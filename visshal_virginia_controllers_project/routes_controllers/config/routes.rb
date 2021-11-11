@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :artworks do
     resources :comments, only: [:index]
-    resources :likes, only: [:index]
+    resources :likes, only: [:index, :create]
   end
 
   resources :artworks do
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:create, :destroy, :index]
 
   resources :comments do
-    resources :likes, only: [:index]
+    resources :likes, only: [:index, :create]
   end
 
   resources :likes, only: [:create, :destroy, :index]

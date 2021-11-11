@@ -13,7 +13,14 @@ class LikesController < ApplicationController
     end
 
     def create
-        like = Like.new(like_params)
+        if params[:artwork_id]
+            like = Like.new(user_id: params[:user_id], likeable_id: params[:artwork_id], likeable_type: 'Artwork')
+        elsif params[:comment_id]
+            like = Like.new(user_id: params[:user_id], likeable_id: params[:comment_id], likeable_type: 'Comment')
+        else
+            like = Like.new(like_params)
+        end
+
         if like.save
             render json: like
         else
