@@ -11,6 +11,7 @@ Artwork.destroy_all
 ArtworkShare.destroy_all
 Comment.destroy_all
 Like.destroy_all
+Collection.destroy_all
 
 users = User.create([
     {username: 'vish'},
@@ -44,4 +45,9 @@ likes = Like.create([
     {user_id: 1, likeable_id: 1, likeable_type: :Artwork},
     {user_id: 4, likeable_id: 2, likeable_type: :Artwork},
     {user_id: 3, likeable_id: 2, likeable_type: :Comment}
+])
+
+collections = Collection.create([
+    {user_id: 1, label: 'Contemporary'},
+    {user_id: 2, label: 'SpongeBob'}
 ])

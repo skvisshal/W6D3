@@ -15,7 +15,21 @@ Rails.application.routes.draw do
     resources :likes, only: [:index]
   end
 
+  resources :artworks do
+    member do
+      post :favorite
+      post :remove_favorite
+    end
+  end
+
   resources :artwork_shares, only: [:create, :destroy]
+
+  resources :artwork_shares do
+    member do
+      post :favorite 
+      post :remove_favorite
+    end
+  end
 
   resources :comments, only: [:create, :destroy, :index]
 
@@ -24,5 +38,15 @@ Rails.application.routes.draw do
   end
 
   resources :likes, only: [:create, :destroy, :index]
+
+  resources :collections, only:[:create, :destroy, :index, :update, :show]
+
+  resources :collections do
+    resources :artworks do
+      resources :collection_assignments, only: [:create]
+    end
+  end
+
+  resources :collection_assignments, only: [:destroy]
 
 end

@@ -28,4 +28,9 @@ class User < ApplicationRecord
     primary_key: :id,
     foreign_key: :user_id
 
+    has_many :collections,
+    class_name: :Collection,
+    primary_key: :id,
+    foreign_key: :user_id
+
 end
